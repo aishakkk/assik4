@@ -66,7 +66,22 @@ public class MyHashTable <K, V>{
     }
 
     public V remove(K key) {
+        int index = hash(key);
+        HashNode<K, V> prevNode = null;
 
+        for (HashNode<K, V> currentNode = chain[index]; currentNode != null; prevNode = currentNode, currentNode = currentNode.next) {
+            if (currentNode.key.equals(key)) {
+                if (prevNode == null) {
+                    chain[index] = currentNode.next;
+                } else {
+                    prevNode.next = currentNode.next;
+                }
+                size--;
+                return currentNode.value;
+            }
+        }
+
+        return null;
     }
 
     public boolean contains(V value) {
