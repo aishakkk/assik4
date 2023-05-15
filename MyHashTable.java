@@ -44,20 +44,36 @@ public class MyHashTable <K, V>{
     private HashNode<K, V>[] chain;
     private int M = 11;
     private int size;
-
+    /**
+     * MyHashTable - constructor to create hash table
+     */
     public MyHashTable() {
         chain = new HashNode[M];
     }
 
+    /**
+     * MyHashTable - constructor to create hash table with specific M
+     * @param M - given M to change
+     */
     public MyHashTable(int M) {
         this.M = M;
         chain = new HashNode[M];
     }
 
+    /**
+     * hash - method to do hash key
+     * @param key - given key to do hash
+     * @return int
+     */
     private int hash(K key) {
         return key.hashCode() % M;
     }
 
+    /**
+     * put - method puts a value in hash table with key
+     * @param key - given key to put within
+     * @param value - given value to put
+     */
     public void put(K key, V value) {
         int index = hash(key);
         HashNode<K, V> newNode = new HashNode<>(key, value);
@@ -74,6 +90,11 @@ public class MyHashTable <K, V>{
         size++;
     }
 
+    /**
+     * get - method gets a value from hash table with key
+     * @param key - given key to get value within
+     * @return V - value type
+     */
     public V get(K key) {
         int index = hash(key);
         HashNode<K, V> currentNode = chain[index];
@@ -86,6 +107,11 @@ public class MyHashTable <K, V>{
         return null;
     }
 
+    /**
+     * remove - method removes value from hash table with key
+     * @param key - given key to remove value within
+     * @return V - value type
+     */
     public V remove(K key) {
         int index = hash(key);
         HashNode<K, V> prevNode = null;
@@ -101,10 +127,14 @@ public class MyHashTable <K, V>{
                 return currentNode.value;
             }
         }
-
         return null;
     }
 
+    /**
+     * contains - method checks is value in hash table
+     * @param value - given value to check
+     * @return boolean
+     */
     public boolean contains(V value) {
         for (HashNode<K, V> node : chain) {
             for (HashNode<K, V> currentNode = node; currentNode != null; currentNode = currentNode.next) {
@@ -116,6 +146,11 @@ public class MyHashTable <K, V>{
         return false;
     }
 
+    /**
+     * getKey - method returns key with value
+     * @param value - given value to get key within
+     * @return K - key type
+     */
     public K getKey(V value) {
         for (HashNode<K, V> node : chain) {
             for (HashNode<K, V> currentNode = node; currentNode != null; currentNode = currentNode.next) {
