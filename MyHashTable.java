@@ -54,7 +54,15 @@ public class MyHashTable <K, V>{
     }
 
     public V get(K key) {
+        int index = hash(key);
+        HashNode<K, V> currentNode = chain[index];
 
+        for (currentNode = chain[index]; currentNode != null; currentNode = currentNode.next) {
+            if (currentNode.key.equals(key)) {
+                return currentNode.value;
+            }
+        }
+        return null;
     }
 
     public V remove(K key) {
