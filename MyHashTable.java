@@ -96,6 +96,13 @@ public class MyHashTable <K, V>{
     }
 
     public K getKey(V value) {
-
+        for (HashNode<K, V> node : chain) {
+            for (HashNode<K, V> currentNode = node; currentNode != null; currentNode = currentNode.next) {
+                if (currentNode.value.equals(value)) {
+                    return currentNode.key;
+                }
+            }
+        }
+        return null;
     }
 }
