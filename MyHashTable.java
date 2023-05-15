@@ -85,7 +85,14 @@ public class MyHashTable <K, V>{
     }
 
     public boolean contains(V value) {
-
+        for (HashNode<K, V> node : chain) {
+            for (HashNode<K, V> currentNode = node; currentNode != null; currentNode = currentNode.next) {
+                if (currentNode.value.equals(value)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public K getKey(V value) {
