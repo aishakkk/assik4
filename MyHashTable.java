@@ -1,49 +1,61 @@
-public class MyHashTable <K, V>{
+public class MyHashTable <K, V> {
     private class HashNode<K, V> {
         private K key;
         private V value;
         private HashNode<K, V> next;
+
         /**
          * HashNode - constructor to set values in fields
-         * @param key - given key to set
+         *
+         * @param key   - given key to set
          * @param value - given value to set
          */
         public HashNode(K key, V value) {
             this.key = key;
             this.value = value;
         }
+
         /**
          * getKey - method that returns key of node
+         *
          * @return K - key type
          */
         public K getKey() {
             return key;
         }
+
         /**
          * getValue - method that returns value of node
+         *
          * @return V - value type
          */
         public V getValue() {
             return value;
         }
+
         /**
          * setValue - method that set value in node
+         *
          * @param value - given value to set
          */
         public void setValue(V value) {
             this.value = value;
         }
+
         /**
          * toString - method that returns node with specific type
+         *
          * @return String
          */
         public String toString() {
             return "{" + key + " " + value + "}";
         }
     }
+
     private HashNode<K, V>[] chain;
     private int M = 11;
     private int size;
+
     /**
      * MyHashTable - constructor to create hash table
      */
@@ -53,6 +65,7 @@ public class MyHashTable <K, V>{
 
     /**
      * MyHashTable - constructor to create hash table with specific M
+     *
      * @param M - given M to change
      */
     public MyHashTable(int M) {
@@ -62,6 +75,7 @@ public class MyHashTable <K, V>{
 
     /**
      * hash - method to do hash key
+     *
      * @param key - given key to do hash
      * @return int
      */
@@ -71,7 +85,8 @@ public class MyHashTable <K, V>{
 
     /**
      * put - method puts a value in hash table with key
-     * @param key - given key to put within
+     *
+     * @param key   - given key to put within
      * @param value - given value to put
      */
     public void put(K key, V value) {
@@ -92,6 +107,7 @@ public class MyHashTable <K, V>{
 
     /**
      * get - method gets a value from hash table with key
+     *
      * @param key - given key to get value within
      * @return V - value type
      */
@@ -109,6 +125,7 @@ public class MyHashTable <K, V>{
 
     /**
      * remove - method removes value from hash table with key
+     *
      * @param key - given key to remove value within
      * @return V - value type
      */
@@ -132,6 +149,7 @@ public class MyHashTable <K, V>{
 
     /**
      * contains - method checks is value in hash table
+     *
      * @param value - given value to check
      * @return boolean
      */
@@ -148,6 +166,7 @@ public class MyHashTable <K, V>{
 
     /**
      * getKey - method returns key with value
+     *
      * @param value - given value to get key within
      * @return K - key type
      */
@@ -158,6 +177,20 @@ public class MyHashTable <K, V>{
                     return currentNode.key;
                 }
             }
+        }
+        return null;
+
+    }
+
+    public V remove(K key, V oldValue, V newValue) {
+        int index = hash(key);
+        HashNode<K, V> node = chain[index];
+        while (node != null) {
+            if (node.key.equals(key) && node.value.equals(oldValue)) {
+                node.value = newValue;
+                return newValue;
+            }
+            node = node.next;
         }
         return null;
     }
