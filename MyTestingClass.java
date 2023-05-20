@@ -38,7 +38,7 @@ public class MyTestingClass<K, V, MyHashtable> {
      * Generates 10000 random elements and adds them to a hash table.
      */
     public void tenThousandtest() {
-        MyHashtable<K, V> pipi = new MyHashtable<>();
+        MyHashTable<K, V> pipi = new MyHashTable<K,V>();
         for (int i = 0; i < 10000; i++) {
             int x = random.nextInt(1000);
             int y = random.nextInt(1000);
@@ -47,7 +47,6 @@ public class MyTestingClass<K, V, MyHashtable> {
         }
 
         // print number of elements in each bucket
-        pipi.counter();
 
     }
 
@@ -55,7 +54,7 @@ public class MyTestingClass<K, V, MyHashtable> {
      * Tests all methods in the MyHashtable
      **/
     public void tester() {
-        MyHashtable hash = new MyHashtable();
+        MyHashTable hash = new MyHashTable();
         hash.put(45, "fdngdgn");
         hash.put(5, "sdfgnf");
         hash.put(4, "fngdfgn");
